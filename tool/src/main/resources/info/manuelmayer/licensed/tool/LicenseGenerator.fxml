@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="pane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="info.manuelmayer.licensed.tool.LicenseGeneratorAppController">
+	<top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Datei">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#create" text="Neu">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#open" text="Öffnen...">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="save" disable="true" mnemonicParsing="false" onAction="#save" text="Speichern">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem fx:id="saveAs" disable="true" mnemonicParsing="false" onAction="#saveAs" text="Speichern unter...">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem mnemonicParsing="false" onAction="#exit" text="Beenden" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Hilfe">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#about" text="Über" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="20.0" layoutY="14.0" text="Anwendungsschlüssel" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <TextField fx:id="applicationKey" disable="true" layoutX="10.0" layoutY="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="17.0" />
+            <Label layoutX="14.0" layoutY="66.0" text="Lizenznehmer" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+            <TextField fx:id="holder" disable="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0" />
+            <Label layoutX="14.0" layoutY="14.0" text="Herausgeber" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
+            <TextField fx:id="issuer" disable="true" layoutX="14.0" layoutY="31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="117.0" />
+            <DatePicker fx:id="issueDate" disable="true" layoutX="14.0" layoutY="135.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="167.0" />
+            <Label layoutX="14.0" layoutY="118.0" text="Ausgabedatum" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0" />
+            <Label layoutX="14.0" layoutY="193.0" text="Anzahl Benutzer" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="193.0" AnchorPane.topAnchor="230.0" />
+            <TextField fx:id="numberOfUsers" disable="true" layoutX="14.0" layoutY="212.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="193.0" AnchorPane.topAnchor="247.0" />
+            <Separator layoutX="14.0" layoutY="179.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="210.0" />
+            <Label layoutX="14.0" layoutY="246.0" text="Gültig von" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="193.0" AnchorPane.topAnchor="280.0" />
+            <DatePicker fx:id="validFrom" disable="true" layoutX="14.0" layoutY="263.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="193.0" AnchorPane.topAnchor="297.0" />
+            <Label layoutX="14.0" layoutY="301.0" text="Gültig bis" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="280.0" />
+            <DatePicker fx:id="validTill" disable="true" layoutX="14.0" layoutY="318.0" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="297.0" />
+            <Label layoutX="14.0" layoutY="355.0" text="Funktionen" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="330.0" />
+            <Label layoutX="14.0" layoutY="408.0" text="Versionen" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="380.0" />
+            <TextField fx:id="numberOfDevices" disable="true" layoutX="200.0" layoutY="213.0" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="247.0" />
+            <Label layoutX="207.0" layoutY="194.0" text="Anzahl Geräte" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0" />
+            <TextField fx:id="features" disable="true" layoutX="14.0" layoutY="311.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="347.0" />
+            <TextField fx:id="versions" disable="true" layoutX="14.0" layoutY="361.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="397.0" />
+            <Label layoutX="24.0" layoutY="418.0" text="Hosts" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="430.0" />
+            <TextField fx:id="hosts" disable="true" layoutX="24.0" layoutY="371.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="447.0" />
+         </children>
+         <padding>
+            <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+         </padding>
+      </AnchorPane>
+   </center>
+</BorderPane>

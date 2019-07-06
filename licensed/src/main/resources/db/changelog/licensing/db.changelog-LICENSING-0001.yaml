@@ -1,0 +1,67 @@
+databaseChangeLog:
+
+    - changeSet:
+        id: LICENSING-0001
+        author: manuelmayer@posteo.de
+        comment: "Licensing Initialization"
+        changes:
+            - createTable:
+                tableName: licensing
+                columns:
+                    - column:
+                        name: active
+                        type: boolean
+                        constraints:
+                            nullable: false
+                    - column:
+                        name: device
+                        type: varchar(100)
+                        constraints:
+                            nullable: true
+                    - column:
+                        name: id
+                        type: bigint
+                        autoIncrement: true
+                        constraints:
+                            primaryKey: true
+                            nullable: false
+                    - column:
+                        name: license_key
+                        type: varchar(100)
+                        constraints:
+                            nullable: false
+                    - column:
+                        name: modified
+                        type: timestamp
+                        constraints:
+                            nullable: false
+                    - column:
+                        name: user_login
+                        type: varchar(100)
+                        constraints:
+                            nullable: true
+            - createIndex:
+                indexName: idx_licensing_active
+                tableName: licensing
+                columns:
+                    - column:
+                        name: active
+            - createIndex:
+                indexName: idx_licensing_device
+                tableName: licensing
+                columns:
+                    - column:
+                        name: device
+            - createIndex:
+                indexName: idx_licensing_license_key
+                tableName: licensing
+                columns:
+                    - column:
+                        name: license_key
+            - createIndex:
+                indexName: idx_licensing_user_login
+                tableName: licensing
+                columns:
+                    - column:
+                        name: user_login
+                        

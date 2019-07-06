@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+info.manuelmayer.licensed.boot.LicensingConfiguration
