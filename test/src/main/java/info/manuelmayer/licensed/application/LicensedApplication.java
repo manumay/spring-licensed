@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -37,9 +38,15 @@ public class LicensedApplication {
 	    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
 	        auth.inMemoryAuthentication()
 			  	.withUser("user1").password(passwordEncoder().encode("password")).roles("USER").and()
-			  	.withUser("user2").password(passwordEncoder().encode("password")).roles("USER").and()
-			  	.withUser("user3").password(passwordEncoder().encode("password")).roles("USER");
+			  	.withUser("user2").password(passwordEncoder().encode("password")).roles("USER");
 	    }
+		
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+			http.antMatcher("/**")
+	            .authorizeRequests().anyRequest().authenticated().and()
+	            .formLogin().permitAll();
+		}
 		
 		@Bean
 		public SecurityContextImpl securityContext() {

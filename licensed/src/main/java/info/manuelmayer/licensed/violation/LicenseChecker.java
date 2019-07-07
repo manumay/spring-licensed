@@ -80,16 +80,16 @@ public class LicenseChecker {
         String scope = "feature";
         boolean exhausted = !getLicense(key).getRestrictions().getFeatures()
                 .matcher(feature).matches();
-        String details = exhausted ? "not-licensed" : "licensed";
+        String details = exhausted ? "not licensed" : "licensed";
         return new LicenseCheck(scope, exhausted, details); 
     }
     
     private String getInvalidSince(Period period) {
-        return String.format("invalid-since", period.getYears(), period.getMonths(), period.getDays());
+        return String.format(LicenseViolationMessages.TIMEPERIOD_UNLICENSED, period.getYears(), period.getMonths(), period.getDays());
     }
     
     private String getValidFor(Period period) {
-        return String.format("valid-for", period.getYears(), period.getMonths(), period.getDays());
+        return String.format(LicenseViolationMessages.TIMEPERIOD_LICENSED, period.getYears(), period.getMonths(), period.getDays());
     }
     
     public LicenseCheck checkDevice(String key, String deviceId) {
@@ -97,7 +97,7 @@ public class LicenseChecker {
         
         String scope = "device-" + deviceId;
         boolean exhausted = licensing == null || Boolean.FALSE.equals(licensing.getActive());
-        String details = String.format(exhausted ? "x-is-not-licensed" : "x-is-licensed", deviceId);
+        String details = String.format(exhausted ? LicenseViolationMessages.DEVICE_UNLICENSED : LicenseViolationMessages.DEVICE_LICENSED, deviceId);
         return new LicenseCheck(scope, exhausted, details);
     }
     
@@ -107,8 +107,8 @@ public class LicenseChecker {
         
         String scope = "devices";
         boolean exhausted = devices >= maxDevices;
-        String details = exhausted ? String.format("no-more-licenses") :
-            String.format("x-more-device-licenses", maxDevices - devices);
+        String details = exhausted ? String.format(LicenseViolationMessages.DEVICE_UNLICENSED, devices, maxDevices) :
+            String.format(LicenseViolationMessages.DEVICE_LICENSED, devices, maxDevices);
         return new LicenseCheck(scope, exhausted, details);
     }
     
@@ -116,7 +116,7 @@ public class LicenseChecker {
         String scope = "host";
         boolean exhausted = request != null && !getLicense(key).getRestrictions().getHosts()
                 .matcher(request.getServerName()).matches();
-        String details = String.format(exhausted ? "x-is-not-licensed" : "x-is-licensed", request != null ? request.getServerName() : "?");
+        String details = String.format(exhausted ? LicenseViolationMessages.HOST_UNLICENSED : LicenseViolationMessages.HOST_LICENSED, request != null ? request.getServerName() : "?");
         return new LicenseCheck(scope, exhausted, details); 
     }
 
@@ -125,7 +125,7 @@ public class LicenseChecker {
         
         String scope = "user-" + userLogin;
         boolean exhausted = licensing == null || Boolean.FALSE.equals(licensing.getActive());
-        String details = String.format(exhausted ? "x-is-not-licensed" : "x-is-licensed", userLogin);
+        String details = String.format(exhausted ? LicenseViolationMessages.USER_UNLICENSED : LicenseViolationMessages.USER_LICENSED, userLogin);
         return new LicenseCheck(scope, exhausted, details);
     }
 
@@ -135,8 +135,8 @@ public class LicenseChecker {
         
         String scope = "users";
         boolean exhausted = users > maxUsers;
-        String details = exhausted ? String.format("no-more-licenses") :
-            String.format("x-more-user-licenses", maxUsers - users);
+        String details = exhausted ? String.format(LicenseViolationMessages.USERS_UNLICENSED, users, maxUsers) :
+            String.format(LicenseViolationMessages.USERS_LICENSED, users, maxUsers);
         return new LicenseCheck(scope, exhausted, details);
     }
 
@@ -203,7 +203,7 @@ public class LicenseChecker {
         String scope = "version";
         boolean exhausted = !getLicense(key).getRestrictions().getVersions()
                 .matcher(version).matches();
-        String details = String.format(exhausted ? "x-is-not-licensed" : "x-is-licensed", version);
+        String details = String.format(exhausted ? LicenseViolationMessages.VERSION_UNLICENSED : LicenseViolationMessages.DEVICE_LICENSED, version);
         return new LicenseCheck(scope, exhausted, details); 
     }
     
