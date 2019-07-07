@@ -9,7 +9,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 
 import info.manuelmayer.licensed.actuator.LicenseHealthIndicator;
-import info.manuelmayer.licensed.actuator.LicensingEndpoint;
+import info.manuelmayer.licensed.actuator.LicenseEndpoint;
 import info.manuelmayer.licensed.aop.LicensedInterceptor;
 import info.manuelmayer.licensed.aop.LicensedPointcutAdvisor;
 import info.manuelmayer.licensed.service.LicenseManager;
@@ -56,8 +56,8 @@ public class LicensingConfiguration {
 	}
 	
 	@Bean
-	public LicensingEndpoint licensingEndpoint() {
-		return new LicensingEndpoint();
+	public LicenseEndpoint licensingEndpoint() {
+		return new LicenseEndpoint();
 	}
 	
 	@Bean

@@ -13,8 +13,8 @@ import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;
 import info.manuelmayer.licensed.model.License;
 import info.manuelmayer.licensed.service.LicenseManager;
 
-@Endpoint(id="licensing")
-public class LicensingEndpoint {
+@Endpoint(id="license")
+public class LicenseEndpoint {
     
     @Autowired
     private LicenseManager licenseRepository;
